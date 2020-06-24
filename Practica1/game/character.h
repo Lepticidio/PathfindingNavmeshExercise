@@ -3,6 +3,7 @@
 
 #include <moaicore/MOAIEntity2D.h>
 #include "Navmesh.h"
+#include "Path.h"
 
 class Character: public MOAIEntity2D
 {
@@ -23,11 +24,16 @@ public:
 	
 	USVec2D GetLinearVelocity() const { return mLinearVelocity;}
 	float GetAngularVelocity() const { return mAngularVelocity;}
+	void CheckPathCreation();
 private:
 	USVec2D mLinearVelocity;
 	float mAngularVelocity;
 	Navmesh* m_pNavmesh;
-	
+	USVec2D m_vStartPosition, m_vEndPosition;
+	void SetStartPosition(float x, float y) { m_vStartPosition = USVec2D(x, y);}
+	void SetEndPosition(float x, float y) { m_vEndPosition = USVec2D(x, y);}
+	bool m_bStartSetted = false, m_bEndSetted = false;
+	Path* m_pPath = nullptr;
 	
 	
 	// Lua configuration
@@ -36,6 +42,8 @@ public:
 private:
 	static int _setLinearVel(lua_State* L);
 	static int _setAngularVel(lua_State* L);
+	static int _setStartPosition(lua_State* L);
+	static int _setEndPosition(lua_State* L);
 };
 
 #endif

@@ -47,20 +47,16 @@ layer:setDrawDebug(debug)
 MOAIDrawDebug.insertEntity(entity)
 
 
-pathfinder = Pathfinder.new()
-pathfinder:setStartPosition(5, 10)
-pathfinder:setEndPosition(20, 40)
-MOAIDrawDebug.insertEntity(pathfinder)
 
 mouseX = 0
 mouseY = 0
 
 function onClick(down)
-  pathfinder:setStartPosition(mouseX, mouseY)
+  entity:setStartPosition(mouseX, mouseY)
 end
 
 function onRightClick(down)
-  pathfinder:setEndPosition(mouseX, mouseY)
+  entity:setEndPosition(mouseX, mouseY)
 end
 
 function pointerCallback(x, y)
@@ -76,7 +72,6 @@ function onKeyPressed(key, down)
 		if down then
 			print(tostring(key))
 		else
-			pathfinder:pathfindStep()
 		end
 	end
 end
