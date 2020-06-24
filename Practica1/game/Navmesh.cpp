@@ -121,3 +121,15 @@ void Navmesh::DrawDebug()
         m_tPolygons[i].DrawDebug();
     }
 }
+bool Navmesh::PointInNavmesh(USVec2D _vPoint)
+{
+    bool bResult = false;
+    for (int i = 0; i < m_tPolygons.size(); i++)
+    {
+        if (m_tPolygons[i].PointInPolygon(_vPoint))
+        {
+            bResult = true;
+        }
+    }
+    return bResult;
+}

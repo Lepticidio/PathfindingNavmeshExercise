@@ -10,5 +10,6 @@ public:
 	std::vector<Polygon> m_tPolygons;
 	Navmesh(const char* filename);
 	void DrawDebug();
+	bool PointInNavmesh(USVec2D _vPoint);
 };
 

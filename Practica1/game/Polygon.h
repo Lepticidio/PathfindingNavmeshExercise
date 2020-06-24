@@ -8,5 +8,6 @@ public:
 	std::vector<USVec2D> m_tVertex;
 	std::vector<Edge*> m_tEdge;
 	void DrawDebug();
+	bool PointInPolygon(USVec2D _vPoint);
 };
 

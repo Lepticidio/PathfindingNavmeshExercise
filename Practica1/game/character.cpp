@@ -42,8 +42,16 @@ void Character::DrawDebug()
 	m_pNavmesh->DrawDebug();
 
 	gfxDevice.SetPenColor(1.0f, 0.0f, 1.0f, 1.0f);
+	if (m_pNavmesh->PointInNavmesh(m_vStartPosition))
+	{
+		gfxDevice.SetPenColor(0.0f, 1.0f, 0.0f, 1.0f);
+	}
 	MOAIDraw::DrawEllipseFill(m_vStartPosition.mX, m_vStartPosition.mY, 10, 10, 16);
 	gfxDevice.SetPenColor(1.0f, 0.0f, 0.0f, 1.0f);
+	if (m_pNavmesh->PointInNavmesh(m_vEndPosition))
+	{
+		gfxDevice.SetPenColor(1.0f, 1.0f, 0.0f, 1.0f);
+	}
 	MOAIDraw::DrawEllipseFill(m_vEndPosition.mX, m_vEndPosition.mY, 10, 10, 16);
 	if (m_pPath != nullptr)
 	{
