@@ -11,5 +11,6 @@ public:
 	Navmesh(const char* filename);
 	void DrawDebug();
 	bool PointInNavmesh(USVec2D _vPoint);
+	Polygon* PolygonFromPoint(USVec2D _vPoint);
 };
 

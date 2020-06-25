@@ -8,6 +8,7 @@ Character::Character() : mLinearVelocity(0.0f, 0.0f), mAngularVelocity(0.0f)
 	RTTI_END
 	const char* sNavmeshName = "navmesh.xml";
 	m_pNavmesh = new Navmesh(sNavmeshName);
+	m_pPath = new Path();
 }
 
 Character::~Character()
@@ -32,7 +33,7 @@ void Character::CheckPathCreation()
 {
 	if (m_bStartSetted && m_bEndSetted)
 	{
-		m_pPath = new Path(m_vStartPosition, m_vEndPosition);
+		m_pPath->FindPath(m_pNavmesh, m_vStartPosition, m_vEndPosition);
 	}
 }
 void Character::DrawDebug()

@@ -53,7 +53,7 @@ bool DoIntersect(USVec2D _vP1, USVec2D _vQ1, USVec2D _vP2, USVec2D _vQ2)
     return false; // Doesn't fall in any of the above cases 
 }
 
-Polygon::Polygon()
+Polygon::Polygon() : m_fG (INFINITY)
 {
 
 }
@@ -113,4 +113,24 @@ bool Polygon::PointInPolygon(USVec2D _vPoint)
 
     // Return true if count is odd, false otherwise 
     return iCount %2 == 1; 
+}
+USVec2D  Polygon::AveragePoint()
+{
+    float fTotalX = 0, fTotalY = 0;
+    int iSize = m_tVertex.size();
+    for (int i = 0; i < iSize; i++)
+    {
+        fTotalX += m_tVertex[i].mX;
+        fTotalY += m_tVertex[i].mY;
+    }
+
+    return USVec2D(fTotalX / (float)iSize, fTotalY / (float)iSize);
+}
+void Polygon::CalculateH(USVec2D _vEndPoint)
+{
+    m_fH = (_vEndPoint - AveragePoint()).Length();
+}
+void Polygon::CalculateF()
+{
+    m_fF = m_fG + m_fH;
 }

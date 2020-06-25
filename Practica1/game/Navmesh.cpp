@@ -133,3 +133,14 @@ bool Navmesh::PointInNavmesh(USVec2D _vPoint)
     }
     return bResult;
 }
+Polygon* Navmesh::PolygonFromPoint(USVec2D _vPoint)
+{
+    for (int i = 0; i < m_tPolygons.size(); i++)
+    {
+        if (m_tPolygons[i].PointInPolygon(_vPoint))
+        {
+            return &m_tPolygons[i];
+        }
+    }
+    return nullptr;
+}
