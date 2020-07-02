@@ -2,8 +2,7 @@
 #include "PathFollowingSteering.h"
 #include "character.h"
 
-
-USVec2D ClosestPointInSegment(USVec2D _vASegment, USVec2D _vBSegment, USVec2D _vPoint)
+USVec2D ClosestPointOnSegment(USVec2D _vASegment, USVec2D _vBSegment, USVec2D _vPoint)
 {
 	USVec2D vV = _vBSegment - _vASegment;
 	USVec2D vU = _vASegment - _vPoint;
@@ -34,7 +33,7 @@ USVec2D PathFollowingSteering::GetSteering()
 	{
 		USVec2D vPointA = m_pPath->m_tPoints[i - 1];
 		USVec2D vPointB = m_pPath->m_tPoints[i];
-		USVec2D vClosestPointSegment = ClosestPointInSegment(vPointA, vPointB, m_pCharacter->GetLoc());
+		USVec2D vClosestPointSegment = ClosestPointOnSegment(vPointA, vPointB, m_pCharacter->GetLoc());
 		float fDistance = (vClosestPointSegment - m_pCharacter->GetLoc()).Length();
 		if ( fDistance < fClosestDistance)
 		{
